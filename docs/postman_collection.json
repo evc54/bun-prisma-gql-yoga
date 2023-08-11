@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "f5c38b3f-15d1-4b3e-9209-d14447d4b113",
+		"name": "Testing GraphQL",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21024593"
+	},
+	"item": [
+		{
+			"name": "Create User Mutation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const res = pm.response.json();",
+							"pm.globals.set('jwt', res.data.signUp.token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation SignUp(\n    $name: String!,\n    $login: String!,\n    $password: String!\n) {\n    signUp(\n        name: $name,\n        login: $login,\n        password: $password\n    ) {\n        token\n    }\n}",
+						"variables": "{\n    \"name\": \"New User\",\n    \"login\": \"user_login\",\n    \"password\": \"test_password\"\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Sign In User Mutation",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const res = pm.response.json();",
+							"pm.globals.set('jwt', res.data.signIn.token);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "mutation SignIn(\n    $login: String!,\n    $password: String!\n) {\n    signIn(\n        login: $login,\n        password: $password\n    ) {\n        token\n    }\n}",
+						"variables": "{\n    \"login\": \"user_login\",\n    \"password\": \"test_password\"\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Users Query",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJhZG1pbkBtYWlsaG9nLnNhbmRib2NzLmNvbSIsImZpcnN0TmFtZSI6IlRlbmFudCIsImxhc3ROYW1lIjoiQWRtaW5pc3RyYXRvciIsIm9yaWdpbiI6Imh0dHA6Ly9sb2NhbGhvc3Q6ODA4MCIsImhhc2giOiJlNzk3OTg3NTVlYzIyN2FmIiwiaWF0IjoxNjkwMzgxMDg1LCJleHAiOjE2OTAzODEwOTV9.B8RXtvrHtqPBNK7GnL3WY2sjVU4VppfDkz0UnskCwo63RMIF20dsHti91eGXPgmn2OBM1voVfaya3pG9dvpaMyNMzZXdZCQIDnUnjTwoi1XnoDg4BkVCuKVrdeNUR7W_agDuIE38k7Cb-dDPKw2436ZpVFyhYx-GkjvX_R1ATUdbAda7vqQdp0ToMB5cVbypopRG2HXbkn49L2KeyuDv3Zs5TAR9L-wF-r4DcjUIzA0gNgkSesaDeOdPEwmf2DD2ZG0h3Jf6WntxdNmQJAsB59p1UaM3XOQ1UOZzU3AaRSjFlmRDShpr8NbVk9FxEO_oK0wSUzf_oOmJ6xQylgt3AldXq9vr3WttS512oJe4E7vhi1r3p7ovaa1BP2HfDczz29wjlJ8Xe71GeYjCSqz7RT7DmpDO9fPT4ERjMFGTlblznkS3Cfu6jDtiiIwZtX2EV1T809aw0AI6_FbwTG2FLu3DQV6x7Rjf1Jy1Afg5y24mh2HONZpgOBuV6Ju558lsYfYm_UMwPyTiM7wih32G5sR-ukWk4h0LLdIIq_T0XCt-SzbnX7FAFBlJjDVI9amYJD5J9cGBmW-hF_EuE-EslhHp2OCvjYR0ej5dpb3IoL2YK06FHKEZ_usaa00Cd0FPPAGaq_3cV_omxgNLw7wAT4LL4FVfQsrO47KIc296UpU",
+						"type": "text"
+					},
+					{
+						"key": "Origin",
+						"value": "http://localhost:8080",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "graphql",
+					"graphql": {
+						"query": "query UserPage (\n    $take: Float,\n    $skip: Float\n) {\n    users (\n        take: $take,\n        skip: $skip\n    ) {\n        items {\n            id\n            name\n        }\n        hasMore\n    }\n}",
+						"variables": "{\n    \"take\": 10,\n    \"skip\": 0\n}"
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4000/graphql",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"graphql"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{jwt}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
