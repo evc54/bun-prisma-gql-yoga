@@ -20,6 +20,12 @@ cp env.template .env
 
 Adjust it if you need.
 
+Migrate a database:
+
+```bash
+bunx prisma migrate dev
+```
+
 To run:
 
 ```bash
