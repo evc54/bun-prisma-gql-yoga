@@ -1,5 +1,6 @@
 import { jwt } from '@elysiajs/jwt';
 import { Elysia } from 'elysia';
+import { cors } from '@elysiajs/cors';
 import prisma from './prisma/client';
 import {
   GRAPHQL_PATH,
@@ -15,6 +16,7 @@ import {
 
 const app = new Elysia()
   .decorate<"user", Context['user']>('user', null)
+  .use(cors())
   .use(jwt({
     secret: JWT_SECRET,
     exp: JWT_TTL,
