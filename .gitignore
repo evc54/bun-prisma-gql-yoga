@@ -168,5 +168,5 @@ dist
 .yarn/install-state.gz
 .pnp.\*
 
-react/node_modules
-react/build
+frontend/node_modules
+frontend/build

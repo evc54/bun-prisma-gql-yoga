@@ -1,0 +1,38 @@
+{
+  "name": "react",
+  "version": "0.1.99",
+  "dependencies": {
+    "@apollo/client": "^3.8.1",
+    "@chakra-ui/icons": "^2.1.0",
+    "@chakra-ui/react": "^2.8.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "framer-motion": "^10.15.1",
+    "graphql": "^16.7.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.4",
+    "react-router-dom": "^6.15.0",
+    "validator": "^13.11.0",
+    "web-vitals": "^3.0.3"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.37",
+    "@types/react-dom": "^18.0.11",
+    "@types/validator": "^13.11.1",
+    "@types/web": "^0.0.99",
+    "bun-types": "canary",
+    "react-refresh": "0.10.0",
+    "typescript": "latest"
+  },
+  "scripts": {
+    "dev": "bun --watch run dev.tsx"
+  },
+  "module": "index.ts",
+  "type": "module"
+}
