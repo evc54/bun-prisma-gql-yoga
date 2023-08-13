@@ -1,5 +1,6 @@
 import {
   Length,
+  IsEmail
 } from 'class-validator';
 import {
   ArgsType,
@@ -9,11 +10,12 @@ import {
 @ArgsType()
 export class UserSignUp {
   @Field(() => String)
-  @Length(8, 100)
+  @Length(4, 100)
   name: string = '';
 
   @Field(() => String)
   @Length(8, 32)
+  @IsEmail()
   login: string = '';
 
   @Field(() => String)
@@ -25,6 +27,7 @@ export class UserSignUp {
 export class UserSignIn {
   @Field(() => String)
   @Length(8, 32)
+  @IsEmail()
   login: string = '';
 
   @Field(() => String)
