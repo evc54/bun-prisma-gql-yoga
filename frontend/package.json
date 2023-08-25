@@ -1,6 +1,9 @@
 {
-  "name": "react",
+  "name": "frontend",
   "version": "0.1.99",
+  "scripts": {
+    "dev": "bun --watch run dev.tsx"
+  },
   "dependencies": {
     "@apollo/client": "^3.8.1",
     "@chakra-ui/icons": "^2.1.0",
@@ -16,23 +19,18 @@
     "validator": "^13.11.0",
     "web-vitals": "^3.0.3"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app"
-    ]
-  },
   "devDependencies": {
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@types/validator": "^13.11.1",
     "@types/web": "^0.0.99",
-    "bun-types": "canary",
-    "react-refresh": "0.10.0",
-    "typescript": "latest"
-  },
-  "scripts": {
-    "dev": "bun --watch run dev.tsx"
+    "react-refresh": "0.10.0"
   },
   "module": "index.ts",
-  "type": "module"
+  "type": "module",
+  "eslintConfig": {
+    "extends": [
+      "react-app"
+    ]
+  }
 }

@@ -17,7 +17,10 @@ export type Context = YogaInitialContext & {
   user?: { id: string; } | null;
 }
 
-const yoga = createYoga<Context>({ schema });
+const yoga = createYoga<Context>({
+  schema,
+  cors: false, // Elysia will handle CORS
+});
 
 export const yogaFetch = ({ jwt, request, user }: Context) => {
   return yoga.fetch(request, { jwt, request, user });

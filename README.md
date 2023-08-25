@@ -26,10 +26,29 @@ Migrate a database:
 bunx prisma migrate dev
 ```
 
+## Backend
+
 To run:
 
 ```bash
-bun run index.ts
+cd backend
+bun run serve
+```
+
+With hot reloading:
+
+```bash
+cd backend
+bun run serve:watch
+```
+
+## Frontend
+
+To run in dev mode:
+
+```bash
+cd frontend
+bun run dev
 ```
 
 ## API

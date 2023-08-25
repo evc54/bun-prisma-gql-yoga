@@ -15,7 +15,7 @@ import {
 } from './yoga';
 
 const app = new Elysia()
-  .decorate<"user", Context['user']>('user', null)
+  .decorate<'user', Context['user']>('user', null)
   .use(cors())
   .use(jwt({
     secret: JWT_SECRET,
